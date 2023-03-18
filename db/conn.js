@@ -15,10 +15,11 @@ async function getConnection() {
   )`;
   const createTablerd = `CREATE TABLE IF NOT EXISTS rd (
     id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    Domain VARCHAR(255) NOT NULL, event VARCHAR(255) NOT NULL, gid1 INT(11) NOT NULL, gid2 INT(11) NOT NULL, gid3 INT(11) DEFAULT NULL, gid4 INT(11) DEFAULT NULL, gid5 INT(11) DEFAULT NULL, phone VARCHAR(255) NOT NULL,
+    Domain VARCHAR(255) NOT NULL, event VARCHAR(255) NOT NULL, gid1 INT(11) NOT NULL, gid2 INT(11) NOT NULL, gid3 INT(11) DEFAULT NULL, gid4 INT(11) DEFAULT NULL, gid5 INT(11) DEFAULT NULL, phone VARCHAR(255) NOT NULL, played BOOLEAN NOT NULL DEFAULT false,
     UNIQUE KEY unique_gids_per_event (event, gid1, gid2, gid3, gid4, gid5)
   )`;
-  await connection.execute(createTablemrd,createTablerd);
+  await connection.execute(createTablemrd);
+  await connection.execute(createTablerd);
   return connection;
 }
 

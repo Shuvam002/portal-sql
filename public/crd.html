@@ -1,96 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CRD</title>
-    <!-- <script src="node_modules/jquery/dist/jquery.min.js"></script> -->
-</head>
-
-<body>
+  </head>
+  <body>
     <div>
-        Enter event:
-        <select name="Event" id="inputType2">
-            <option value=" "> </option>
-            <option value="code-tyro">code-tyro</option>
-
-        </select>
-        <button id="fetch-button">Fetch Data</button>
-        <table id="data-container"></table>
-
+      Enter event:
+      <select name="Event" id="inputType2">
+        <option value=" "> </option>
+        <option value="byte-bash">byte-bash</option>
+      </select>
+      <button id="fetch-button">Fetch Data</button>
+      <table id="data-container"></table>
     </div>
 
-</body>
-<script>
-    const fieldSelect = document.getElementById('inputType2');
-    const fetchButton = document.getElementById('fetch-button');
-    const dataContainer = document.getElementById('data-container');
-    fetchButton.addEventListener('click', () => {
+    <script>
+      const fieldSelect = document.getElementById('inputType2');
+      const fetchButton = document.getElementById('fetch-button');
+      const dataContainer = document.getElementById('data-container');
+
+      fetchButton.addEventListener('click', () => {
         const field = fieldSelect.value;
-        fetch(`/crd?Event=${field}`)
-            .then(res => res.json()).then(data => {
-                console.log(data);
-                let table = `<table>
-                <thead>
-                    <tr>
-                        <th>TID</th>
-                        <th>played</th>
-                        
-                    </tr>
-                </thead>
-                <tbody>`;
-                data.forEach(item => {
-                    table += `<tr>
-                    <td>${item._id}</td>
-                    <td>${item.played}</td>
-                    <td><input type="checkbox" id="update" data-id="${item._id}" data-played="${item.played}"/></td>
-                    </tr>`;
-                });
-                table += `</tbody>
-            </table>`;
-                dataContainer.innerHTML = table;
-                const update = document.querySelectorAll('input[type="checkbox"][id="update"]');;
-                update.forEach(checkbox => {
-                    checkbox.addEventListener('click', (event) => {
-                        const id = event.target.getAttribute('data-id');
-                        const played = event.target.getAttribute('data-played');
-                        console.log(id, played)
-
-                        fetch(`/crd`, {
-                            method: 'PATCH',
-                            headers: {
-                                'Content-Type': 'application/json'
-                            },
-                            body: JSON.stringify({
-                                id,
-                                played: 1
-                            })
-                        }).then(res => {
-                            if (res.ok) {
-                                return res.json();
-                            } else {
-                                throw new Error("Failed to update the data");
-                            }
-                        }).then(data => {
-                            console.log(data);
-                            alert("Data updated successfully!");
-                        }).catch(error => {
-                            console.error("There was a problem with the fetch operation:", error);
-                        });
+        fetch(`/crd.html?Event=${field}`)
+          .then(res => res.json())
+          .then(data => {
+            let table = `<table>
+                          <thead>
+                            <tr>
+                              <th>ID</th>
+                              <th>Event</th>
+                              <th>Played</th>
+                              <th>Update</th>
+                            </tr>
+                          </thead>
+                          <tbody>`;
+            data.forEach(item => {
+              table += `<tr>
+                          <td>${item.id}</td>
+                          <td>${item.event}</td>
+                          <td>${item.played}</td>
+                          <td><button class="update-button" data-id="${item.id}">Update</button></td>
+                        </tr>`;
+            });
+            table += `</tbody>
+                      </table>`;
+            dataContainer.innerHTML = table;
+            const updateButtons = document.querySelectorAll('.update-button');
+            updateButtons.forEach(button => {
+              button.addEventListener('click', () => {
+                const id = button.getAttribute('data-id');
+                const played = prompt('Enter Played Value:');
+                if (played) {
+                  fetch(`/crd.html/${id}`, {
+                    method: 'PUT',
+                    headers: {
+                      'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                      played
                     })
-                })
-            })
-
-
-    })
-
-
-
-
-
-
-</script>
-
+                  })
+                    .then(res => res.json())
+                    .then(data => {
+                      if (data.success) {
+                        alert('Data Updated Successfully!');
+                      }
+                    })
+                    .catch(err => {
+                      console.error('Error Updating Data:', err);
+                    });
+                }
+              });
+            });
+          })
+          .catch(err => {
+            console.log('Error Fetching Data:', err);
+          });
+      });
+    </script>
+  </body>
 </html>
