@@ -25,7 +25,7 @@
       fetchButton.addEventListener('click', () => {
         const field = fieldSelect.value;
         fetch(`/crd.html?Event=${field}`)
-          .then(res => res.json())
+          .then(res => {res.json();})
           .then(data => {
             let table = `<table>
                           <thead>

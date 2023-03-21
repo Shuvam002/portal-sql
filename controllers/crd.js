@@ -4,15 +4,16 @@ const getConnection = mysql.createConnection({
     namedPlaceholders: true,
     host: 'localhost',
     user: 'root',
-    password: 'I live@malda7321011911',
+    password: '123456789',
     database: 'test'
 });
 
 exports.getData = (req, res) => {
     const { event } = req.query;
     const query = `SELECT * FROM rd WHERE event='${event}'`;
+    // console.log(query);
     getConnection.query(query, (error, results) => {
-        if (error) throw error;
+        if (error)  console.log(error);
         console.log(results);
         res.setHeader('Content-Type', 'application/json');
         res.send(JSON.stringify(results));
@@ -26,6 +27,7 @@ exports.updateData = (req, res) => {
     const query = `UPDATE rd SET played=${played} WHERE id=${id}`;
     getConnection.query(query, (error, results) => {
         if (error) throw error;
+        console.log(results);
         res.json(results);
     });
 };
