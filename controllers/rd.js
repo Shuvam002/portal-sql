@@ -30,7 +30,7 @@ const addrd = async (req, res) => {
         const [duplicateRows] = await connection.execute(checkDuplicationSql, params);
 
         if (duplicateRows.length > 0) {
-            res.status(400).json({ error: 'Record already exists' });
+            res.status(400).json({ error: 'Record already exists' ,duplicateRows});
             return;
         }
 
