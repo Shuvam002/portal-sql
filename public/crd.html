@@ -1,85 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CRD</title>
-  </head>
-  <body>
-    <div>
-      Enter event:
-      <select name="Event" id="inputType2">
-        <option value=" "> </option>
-        <option value="byte-bash">byte-bash</option>
-      </select>
-      <button id="fetch-button">Fetch Data</button>
-      <table id="data-container"></table>
-    </div>
-
-    <script>
-      const fieldSelect = document.getElementById('inputType2');
-      const fetchButton = document.getElementById('fetch-button');
-      const dataContainer = document.getElementById('data-container');
-
-      fetchButton.addEventListener('click', () => {
-        const field = fieldSelect.value;
-        fetch(`/crd.html?Event=${field}`)
-          .then(res => {res.json();})
-          .then(data => {
-            let table = `<table>
-                          <thead>
-                            <tr>
-                              <th>ID</th>
-                              <th>Event</th>
-                              <th>Played</th>
-                              <th>Update</th>
-                            </tr>
-                          </thead>
-                          <tbody>`;
-            data.forEach(item => {
-              table += `<tr>
-                          <td>${item.id}</td>
-                          <td>${item.event}</td>
-                          <td>${item.played}</td>
-                          <td><button class="update-button" data-id="${item.id}">Update</button></td>
-                        </tr>`;
-            });
-            table += `</tbody>
-                      </table>`;
-            dataContainer.innerHTML = table;
-            const updateButtons = document.querySelectorAll('.update-button');
-            updateButtons.forEach(button => {
-              button.addEventListener('click', () => {
-                const id = button.getAttribute('data-id');
-                const played = prompt('Enter Played Value:');
-                if (played) {
-                  fetch(`/crd.html/${id}`, {
-                    method: 'PUT',
-                    headers: {
-                      'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                      played
-                    })
-                  })
-                    .then(res => res.json())
-                    .then(data => {
-                      if (data.success) {
-                        alert('Data Updated Successfully!');
-                      }
-                    })
-                    .catch(err => {
-                      console.error('Error Updating Data:', err);
-                    });
-                }
-              });
-            });
-          })
-          .catch(err => {
-            console.log('Error Fetching Data:', err);
-          });
-      });
-    </script>
-  </body>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CRD</title>
+</head>
+<body>
+  <form action="\crd.html" method="post">
+    Event Name: 
+    <select name="event" id="event">
+      <option value="byte-bash">Byte-Bash</option>
+      <option value="code-mania">Code-Mania</option>
+      <option value="code-sprint">Code-Sprint</option>
+      <option value="Electro-Dote">Electro-Dote</option>
+      <option value="byte-bash">Byte-Bash</option>
+      <option value="byte-bash">Byte-Bash</option>
+      <option value="byte-bash">Byte-Bash</option>
+      <option value="byte-bash">Byte-Bash</option>
+      <option value="byte-bash">Byte-Bash</option>
+      <option value="byte-bash">Byte-Bash</option>
+      <option value="byte-bash">Byte-Bash</option>
+      <option value="byte-bash">Byte-Bash</option>
+      <option value="byte-bash">Byte-Bash</option>
+      <option value="byte-bash">Byte-Bash</option>
+      
+    </select>
+    <button type="submit" id="submit">submit</button>
+  </form>
+  <div class="container" id="table-container">
+    
+  </div>
+  <script src="script.js"></script>
+</body>
 </html>

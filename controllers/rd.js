@@ -13,10 +13,11 @@ const addrd = async (req, res) => {
     try {
         const connection = await getConnection();
 
-        // dynamic SQL query and parameter array based on the values of gid1 to gid5
+        
         let checkDuplicationSql = 'SELECT gid1, gid2, gid3, gid4, gid5 FROM rd WHERE event = ? AND (';
         let params = [event];
-        const gids = [gid1, gid2, gid3, gid4, gid5].filter(gid => gid); // Filter out null/undefined gids
+        let fees = [];
+        const gids = [gid1, gid2, gid3, gid4, gid5].filter(gid => gid);
         checkDuplicationSql += gids.map(gid => `gid1 IN (?)`).join(' OR ') + ' OR ';
         checkDuplicationSql += gids.map(gid => `gid2 IN (?)`).join(' OR ') + ' OR ';
         checkDuplicationSql += gids.map(gid => `gid3 IN (?)`).join(' OR ') + ' OR ';
@@ -24,11 +25,11 @@ const addrd = async (req, res) => {
         checkDuplicationSql += gids.map(gid => `gid5 IN (?)`).join(' OR ');
         params.push(...gids, ...gids, ...gids, ...gids, ...gids);
 
-        checkDuplicationSql += ') AND event = ?'; // Add condition to check for matching event value
+        checkDuplicationSql += ') AND event = ?';
         params.push(event);
-
+        
         const [duplicateRows] = await connection.execute(checkDuplicationSql, params);
-
+        console.log(duplicateRows);
         if (duplicateRows.length > 0) {
             res.status(400).json({ error: 'Record already exists' ,duplicateRows});
             return;
@@ -39,10 +40,10 @@ const addrd = async (req, res) => {
         const values = [Domain, event, gid1, gid2, gid3, gid4, gid5, phone];
 
         const [result] = await connection.execute(sql, values.map((val) => val === undefined ? null : val));
-
+        var msg=fees.map((fee)=>fee===event);
         const userId = result.insertId;
 
-        res.json("Your TID is:" + userId);
+        res.json("Your TID is:" + userId+"\n"+msg);
     } catch (error) {
         console.log(error);
         res.status(500).json({ error: 'Internal server error' });
