@@ -43,7 +43,7 @@ const addrd = async (req, res) => {
         var msg=fees.map((fee)=>fee===event);
         const userId = result.insertId;
 
-        res.json("Your TID is:" + userId+"\n"+msg);
+        res.json("Your TID is:" + userId+" "+msg);
     } catch (error) {
         console.log(error);
         res.status(500).json({ error: 'Internal server error' });
