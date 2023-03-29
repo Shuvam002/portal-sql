@@ -3,9 +3,9 @@ const cors = require('cors');
 const bodyp = require('body-parser');
 const mysql = require('mysql2');
 const connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'soumya@0210',
+    host: 'paridhi2023mysqldb1.ckscrgb0xpar.ap-south-1.rds.amazonaws.com',
+    user: 'admin',
+    password: 'Rabai123',
     database: 'test',
   });
 
