@@ -50,21 +50,21 @@
         var s2 = document.getElementById(s2);
 
         if (s1.value === "civil") {
-            var optionarray = [' | ', 'Setubandhan|setubandhan', "mega-arch|Mega-Arch", "cadstrom|CADSTROM", "Track-o-Treasure|ToT","CivilCombo|CivilCombo"]
+            var optionarray = [' | ', 'Setubandhan|setubandhan', "mega-arch|Mega-Arch", "cadstorm|CADSTORM", "Track-o-Treasure|ToT","civilcombos|CivilCombo"]
         }
         else if (s1.value === "electrical") {
-            var optionarray = [' | ', 'Electro-Dote|Electro-Dote', 'Lumos-arcade|Lumos-Arcade',"ElectricalCombo|ElectricalCombo"]
+            var optionarray = [' | ', 'Electro-Levina|Electro-Levina', 'Luminos-Chase|Luminos-Chase']
         }
         else if (s1.value === "gaming") {
-            var optionarray = [' | ', 'Fifa|FIFA', 'NFS|NFS', "GamingCombo|GamingCombo"]
+            var optionarray = [' | ', 'Fifa|FIFA', 'NFS|NFS']
         }
         else if (s1.value === "coding") {
-            var optionarray = [' | ', 'code-mania|Code-Mania', 'code-sprint|Code-Sprint', 'byte-bash|Byte-Bash',"CodingCombo|CodingCombo"]
+            var optionarray = [' | ', 'code-blitz|Code-Blitz', 'coding-crusade|Coding-Crusade', 'novice-knockout|Novice-Knockout']
         }
         else if (s1.value === "robotics") {
-            var optionarray = [' | ', 'excalibur|Excalibur', 'Poseidons-Trident|Poseidons-Trident', 'Warriors-pit|Warriors-Pit', 'Supa-strikas|Supa-Strikas', 'enter the dragon|Enter the Dragon',"RoboticsCombo|RoboticsCombo"]
+            var optionarray = [' | ', 'line-seeker|Line-Seeker', 'maze-runner|Maze-Runner', 'gladiators-arena|Gladiators-Arena', 'robo-clasico|Robo-Clasico', 'ragnarok|Ragnarok','supernova|Supernova','devils-eye|Devils-Eye','mecha-arcade|Mecha-Arcade','robotics-war-combo|Robotics-War-Combo','robotics-combo|Robotics-Combo']
         }else if(s1.value === "general"){
-            var optionarray = [' | ','GeneralCombo|GeneralCombo']
+            var optionarray = [' | ']
         }
         for (var option in optionarray) {
             var pair = optionarray[option].split("|");
@@ -78,26 +78,22 @@
         var s2 = document.getElementById(s2);
         if (s2.value === "mega-arch") {
             document.getElementById("div").innerHTML =
-                "<h1>Enter Details</h1><br><br>GID: <input required name='gid1'><br><br>GID: <input required name='gid2'><br><br>GID: <input required name='gid3'><br><br>GID: <input required name='gid4'><br><br>GID: <input required name='gid5'><br><br>Phone: <input required name='phone'><br><br><button type='submit'>submit</button>"
-        }else if (s2.value === "CivilCombo") {
+                "<h1>Enter Details</h1><br><br>GID: <input required name='gid1'><br><br>GID: <input name='gid2'><br><br>GID: <input name='gid3'><br><br>GID: <input name='gid4'><br><br>GID: <input name='gid5'><br><br>Phone: <input required name='phone'><br><br><button type='submit'>submit</button>"
+        }else if (s2.value === "civilcombos") {
             document.getElementById("div").innerHTML =
                 "<h1>Enter Details</h1><br><br>GID: <input required name='gid1'><br><br>GID: <input name='gid2'><br><br>GID: <input name='gid3'><br><br>GID: <input name='gid4'><br><br>GID: <input name='gid5'><br><br>Phone: <input required name='phone'><br><br><button type='submit'>submit</button>"
         }else if(s2.value === "Setubandhan" || s2.value === "Track-o-Treasure"){
             document.getElementById("div").innerHTML =
-                "<h1>Enter Details</h1><br><br>GID: <input required name='gid1'><br><br>GID: <input required name='gid2'><br><br>GID: <input required name='gid3'><br><br>Phone: <input required name='phone'><br><br><button type='submit'>submit</button>"
-        }else if(s2.value === "cadstrom"){
-            document.getElementById("div").innerHTML =
-                "<h1>Enter Details</h1><br><br>GID: <input required name='gid1'><br><br>GID: <input required name='gid2'><br><br>Phone: <input required name='phone'><br><br><button type='submit'>submit</button>"
-        }
-        else if (s2.value === "ElectricalCombo") {
+                "<h1>Enter Details</h1><br><br>GID: <input required name='gid1'><br><br>GID: <input name='gid2'><br><br>GID: <input name='gid3'><br><br>Phone: <input required name='phone'><br><br><button type='submit'>submit</button>"
+        }else if(s2.value === "cadstorm"){
             document.getElementById("div").innerHTML =
                 "<h1>Enter Details</h1><br><br>GID: <input required name='gid1'><br><br>GID: <input name='gid2'><br><br>Phone: <input required name='phone'><br><br><button type='submit'>submit</button>"
         }
-        else if (s2.value === 'Electro-Dote') {
+        else if (s2.value === 'Electro-Levina') {
             document.getElementById("div").innerHTML =
-                "<h1>Enter Details</h1><br><br>GID: <input required name='gid1'><br><br>GID: <input required name='gid2'><br><br>Phone: <input required name='phone'><br><br><button type='submit'>submit</button>"
+                "<h1>Enter Details</h1><br><br>GID: <input required name='gid1'><br><br>GID: <input name='gid2'><br><br>Phone: <input required name='phone'><br><br><button type='submit'>submit</button>"
         }
-        else if (s2.value === 'Lumos-arcade') {
+        else if (s2.value === 'Luminos-Chase') {
             document.getElementById("div").innerHTML =
                 "<h1>Enter Details</h1><br><br>GID: <input required name='gid1'><br><br>Phone: <input required name='phone'><br><br><button type='submit'>submit</button>"
         }
@@ -105,41 +101,28 @@
             document.getElementById("div").innerHTML =
                 "<h1>Enter Details</h1><br><br>GID: <input required name='gid1'><br><br>Phone: <input required name='phone'><br><br><button type='submit'>submit</button>"
         }
-        else if (s2.value === 'GamingCombo') {
+        else if (s2.value === 'novice-knockout') {
             document.getElementById("div").innerHTML =
-                "<h1>Enter Details</h1><br><br>GID: <input name='gid1'><br><br>GID: <input name='gid2'><br><br>Phone: <input required name='phone'><br><br><button type='submit'>submit</button>"
+                "<h1>Enter Details</h1><br><br>GID: <input required name='gid1' type='number'><br><br>GID: <input name='gid2' type='number'><br><br>Phone: <input required name='phone'><br><br><button type='submit'>submit</button>"
         }
-        else if (s2.value === 'byte-bash') {
+        else if (s2.value === 'coding-crusade') {
             document.getElementById("div").innerHTML =
-                "<h1>Enter Details</h1><br><br>GID: <input required name='gid1' type='number'><br><br>GID: <input required name='gid2' type='number'><br><br>Phone: <input required name='phone'><br><br><button type='submit'>submit</button>"
+                "<h1>Enter Details</h1><br><br>GID: <input required name='gid1' type='number'><br><br>GID: <input name='gid2' type='number'><br><br>Phone: <input required name='phone'><br><br><button type='submit'>submit</button>"
         }
-        else if (s2.value === 'code-sprint') {
-            document.getElementById("div").innerHTML =
-                "<h1>Enter Details</h1><br><br>GID: <input required name='gid1' type='number'><br><br>GID: <input required name='gid2' type='number'><br><br>GID: <input name='gid3' type='number'><br><br>Phone: <input required name='phone'><br><br><button type='submit'>submit</button>"
-        }
-        else if (s2.value === 'CodingCombo') {
-            document.getElementById("div").innerHTML =
-                "<h1>Enter Details</h1><br><br>GID: <input required name='gid1' type='number'><br><br>GID: <input name='gid2' type='number'><br><br>GID: <input name='gid3' type='number'><br><br>Phone: <input required name='phone'><br><br><button type='submit'>submit</button>"
-        }
-        else if (s2.value === 'code-mania') {
+        else if (s2.value === 'code-blitz') {
             document.getElementById("div").innerHTML =
                 "<h1>Enter Details</h1><br><br>GID: <input required name='gid1'><br><br>Phone: <input required name='phone'><br><br><button type='submit'>submit</button>"
         }
-        else if (s2.value === 'enter the dragon' || s2.value === 'Supa-strikas' || s2.value === 'Warriors-pit') {
-            document.getElementById("div").innerHTML =
-                "<h1>Enter Details</h1><br><br>GID: <input required name='gid1'><br><br>GID: <input required name='gid2'><br><br>GID: <input required name='gid3'><br><br>GID: <input required name='gid4'><br><br>Phone: <input required name='phone'><br><br><button type='submit'>submit</button>"
-        }
-        else if (s2.value === 'RoboticsCombo') {
+        else if (s2.value === 'line-seeker' || s2.value === 'maze-runner' || s2.value === 'gladiators-arena'||s2.value==='robo-clasico'||s2.value==='ragnarok'||s2.value==='supernova'||s2.value==='robotics-war-combo'||s2.value==='robotics-combo') {
             document.getElementById("div").innerHTML =
                 "<h1>Enter Details</h1><br><br>GID: <input required name='gid1'><br><br>GID: <input name='gid2'><br><br>GID: <input name='gid3'><br><br>GID: <input name='gid4'><br><br>Phone: <input required name='phone'><br><br><button type='submit'>submit</button>"
         }
-        else if (s2.value === 'Poseidons-Trident'||s2.value === 'excalibur') {
+        
+        else if (s2.value === 'devils-eye'||s2.value === 'mecha-arcade') {
             document.getElementById("div").innerHTML =
                 "<h1>Enter Details</h1><br><br>GID: <input required name='gid1'><br><br>Phone: <input required name='phone'><br><br><button type='submit'>submit</button>"
         }
-        else if (s2.value === 'GeneralCombo'){
-            document.getElementById("div").innerHTML = "<h1>Enter Details</h1><br><br>GID: <input required name='gid1'><br><br>GID: <input name='gid2'><br><br>GID: <input name='gid3'><br><br>GID: <input name='gid4'><br><br>GID: <input name='gid5'><br><br>Phone: <input required name='phone'><br><br><button type='submit'>submit</button>"
-        }
+        
     }
 </script>
 
