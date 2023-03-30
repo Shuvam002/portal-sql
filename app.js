@@ -1,36 +1,38 @@
-const express = require("express");
-const cors = require("cors");
-const bodyp = require("body-parser");
-const mysql = require("mysql2");
+const express = require('express');
+const cors = require('cors');
+const bodyp = require('body-parser');
+const mysql = require('mysql2');
 const connection = mysql.createConnection({
-  host: "paridhi2023mysqldb1.ckscrgb0xpar.ap-south-1.rds.amazonaws.com",
-  user: "admin",
-  password: "Rabai123",
-  port: 3306,
-  database: "portalSchema",
-});
+    host: 'localhost',
+    user: 'root',
+    password: 'soumya@0210',
+    database: 'test',
+  });
 
 const app = express();
 app.use(express.json());
-app.use(express.static("public"));
+app.use(express.static('public'))
 app.use(cors());
 app.use(bodyp.urlencoded({ extended: true }));
-const mrd_routes = require("./routes/mrd");
-const rd_routes = require("./routes/rd");
+const mrd_routes = require('./routes/mrd');
+const rd_routes = require('./routes/rd');
 
 // const crd_routes = require('./routes/crd');
 // const fetch_routes = require('./routes/fetch');
 
-app.use("/mrd.html", mrd_routes);
-app.use("/rd.html", rd_routes);
-app.get("/crd.html", (req, res) => {
-  connection.query("SELECT DISTINCT event FROM rd", (err, results) => {
-    if (err) {
-      console.error(err);
-      res.status(500).send("Error retrieving events from database");
-    } else {
-      const events = results.map((result) => result.event);
-      res.send(`
+
+
+
+app.use('/mrd.html', mrd_routes);
+app.use('/rd.html', rd_routes);
+app.get('/crd.html', (req, res) => {
+    connection.query('SELECT DISTINCT event FROM rd', (err, results) => {
+        if (err) {
+            console.error(err);
+            res.status(500).send('Error retrieving events from database');
+        } else {
+            const events = results.map((result) => result.event);
+            res.send(`
           <html>
             <head>
               <meta charset="UTF-8">
@@ -45,40 +47,32 @@ app.get("/crd.html", (req, res) => {
             <body>
               <form action="/crd.html" method="post">
                 <select name="event">
-                  ${events.map(
-                    (event) => `<option value="${event}">${event}</option>`
-                  )}
+                  ${events.map((event) => `<option value="${event}">${event}</option>`)}
                 </select>
                 <button type="submit">Submit</button>
               </form>
             </body>
           </html>
         `);
-    }
-  });
+        }
+    });
 });
 
-app.post("/crd.html", (req, res) => {
-  const event = req.body.event;
-  connection.query(
-    `SELECT * FROM rd WHERE event='${event}' and played = 0`,
-    (err, results) => {
-      if (err) {
-        console.error(err);
-        res.status(500).send("Error retrieving data from database");
-      } else {
-        const rows = results
-          .map(
-            (result) => `
+app.post('/crd.html', (req, res) => {
+    const event = req.body.event;
+    connection.query(`SELECT * FROM rd WHERE event='${event}' and played = 0`, (err, results) => {
+        if (err) {
+            console.error(err);
+            res.status(500).send('Error retrieving data from database');
+        } else {
+            const rows = results.map((result) => `
           <tr>
             <td>${result.id}</td>
             <td><input type="text"></td>
             <td><button onclick="markID(${result.id})">Mark</button></td>
           </tr>
-        `
-          )
-          .join("");
-        res.send(`
+        `).join('');
+            res.send(`
           <html>
             <head>
               <meta charset="UTF-8">
@@ -106,25 +100,24 @@ app.post("/crd.html", (req, res) => {
             </body>
           </html>
         `);
-      }
-    }
-  );
+        }
+    });
 });
 
-app.post("/mark", (req, res) => {
-  console.log("mark");
-  const id = req.body.id;
-  console.log(id);
-  const update = "UPDATE rd SET played=1 WHERE id=?";
-  console.log(connection.query(update, [id]));
-  connection.query(update, id, (err) => {
-    if (err) {
-      console.error(err);
-      res.status(500).send("Error updating data in database");
-    } else {
-      res.sendStatus(200);
-    }
-  });
+app.post('/mark', (req, res) => {
+    console.log('mark');
+    const id = req.body.id;
+    console.log(id)
+    const update = 'UPDATE rd SET played=1 WHERE id=?';
+    console.log(connection.query(update, [id]));
+    connection.query(update, id, (err) => {
+        if (err) {
+            console.error(err);
+            res.status(500).send('Error updating data in database');
+        } else {
+            res.sendStatus(200);
+        }
+    });
 });
 // app.use('/fetch',fetch_routes);
 // app.use('/crd',crd_routes);

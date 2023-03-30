@@ -9,7 +9,7 @@ const addrd = async (req, res) => {
   const gid4 = req.body.gid4 || null;
   const gid5 = req.body.gid5 || null;
   const phone = req.body.phone || undefined;
-
+  if(req.body.validation==="megard130012") {
   try {
     const connection = await getConnection();
 
@@ -65,7 +65,7 @@ const addrd = async (req, res) => {
     );
     console.log(duplicateRows);
     if (duplicateRows.length > 0) {
-      res.status(400).json({ error: "Record already exists", duplicateRows });
+      res.status(400).json({ error: "Record already exists", duplicateRows,event:event });
       return;
     }
 
@@ -85,6 +85,9 @@ const addrd = async (req, res) => {
     console.log(error);
     res.status(500).json({ error: "Internal server error" });
   }
+}else{
+  res.status(400).json("access_denied");
+}
 };
 
 module.exports = { addrd };
