@@ -4,9 +4,9 @@ async function getConnection() {
   
   const connection = await mysql.createConnection({
     namedPlaceholders: true,
-    host: 'localhost',
-    user: 'root',
-    password: 'soumya@0210',
+    host: 'paridhi2023mysqldb1.ckscrgb0xpar.ap-south-1.rds.amazonaws.com',
+    user: 'admin',
+    password: 'Rabai123',
     database: 'test'
   });
   const createTablemrd = `CREATE TABLE IF NOT EXISTS mrd (
