@@ -12,42 +12,7 @@ const addrd = async (req, res) => {
 
     try {
         const connection = await getConnection();
-        if (event === 'combos') {
-            const sqlInsert = 'INSERT INTO rd (Domain,event,gid1,gid2,gid3,gid4,gid5,phone) VALUES (?, ?, ?, ?, ?, ?, ?)';
-            const sqlSelect = 'SELECT gid1, gid2, gid3, gid4, gid5 FROM rd WHERE event = ?';
-            const sqlParams = [gid1, gid2, gid3, gid4, gid5, phone, event];
-            connection.query(sqlSelect, [event], (err, result) => {
-                if (err) throw err;
-
-                const arr = [];
-                result.forEach(row => {
-                    if (row.gid1) arr.push(row.gid1);
-                    if (row.gid2) arr.push(row.gid2);
-                    if (row.gid3) arr.push(row.gid3);
-                    if (row.gid4) arr.push(row.gid4);
-                    if (row.gid5) arr.push(row.gid5);
-                });
-
-                connection.query(sqlInsert, sqlParams, (err, result) => {
-                    connection.release();
-
-                    if (err) {
-                        console.error(err);
-                        res.status(500).send('Error inserting record');
-                        return;
-                    }
-
-                    const lastId = result.insertId;
-                    const responseText = `Your TID for ${event} is ${lastId}`;
-
-                    if (arr.includes(gid1) || arr.includes(gid2) || arr.includes(gid3) || arr.includes(gid4) || arr.includes(gid5)) {
-                        res.send(`${responseText}<br>GID already exists in this event`);
-                    } else {
-                        res.send(responseText);
-                    }
-                });
-            });
-        } else {
+        
             let checkDuplicationSql = 'SELECT gid1, gid2, gid3, gid4, gid5 FROM rd WHERE event = ? AND (';
             let params = [event];
             let fees = [];
