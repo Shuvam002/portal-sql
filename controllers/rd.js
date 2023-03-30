@@ -39,7 +39,7 @@ const addrd = async (req, res) => {
         "table-tennis":40,
         "memo-clips":40,
         "carrom":80,
-        "cad-storm":40,
+        "cadstorm":40,
         "mega-arch":150,
         "setubandhan":90,
         "track-o-treasure":80
