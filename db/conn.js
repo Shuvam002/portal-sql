@@ -6,7 +6,7 @@ async function getConnection() {
     namedPlaceholders: true,
     host: 'localhost',
     user: 'root',
-    password: 'soumya@0210',
+    password: 'shubho@2003',
     database: 'test'
   });
   const createTablemrd = `CREATE TABLE IF NOT EXISTS mrd (
