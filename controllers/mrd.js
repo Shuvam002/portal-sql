@@ -4,7 +4,7 @@ const { getConnection } = require('../db/conn');
 
 const addmrd = async (req, res) => {
     const { name, roll, phone, email, college } = req.body;
-    if (req.body.validation === "megarain130012") {
+    if (req.body.validation === "megamrd130012") {
         try {
             const connection = await getConnection();
 

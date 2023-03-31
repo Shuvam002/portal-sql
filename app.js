@@ -3,10 +3,10 @@ const cors = require('cors');
 const bodyp = require('body-parser');
 const mysql = require('mysql2');
 const connection = mysql.createConnection({
-    host: 'paridhi2023mysqldb1.ckscrgb0xpar.ap-south-1.rds.amazonaws.com',
-    user: 'admin',
-    password: 'Rabai123',
-    database: 'portalSchema',
+    host: 'localhost',
+    user: 'root',
+    password: 'soumya@0210',
+    database: 'test',
   });
 
 const app = express();
@@ -37,7 +37,7 @@ app.get('/crd.html', (req, res) => {
             <head>
               <meta charset="UTF-8">
               <meta name="viewport" content="width=device-width, initial-scale=1.0">
-              <title>Paridhi Registration 2023</title>
+              <title>techxtra registration</title>
               <style>
                 table, th, td {
                   border: 1px solid;
