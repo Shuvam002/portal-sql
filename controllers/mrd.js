@@ -8,7 +8,7 @@ const addmrd = async (req, res) => {
         try {
             const connection = await getConnection();
 
-            const sql = 'INSERT INTO mrd (name, roll, phone, email, college) VALUES (?, ?, ?, ?, ?)';
+            const sql = 'INSERT INTO mrd (name, rollno, phone, email, college) VALUES (?, ?, ?, ?, ?)';
 
             const [result] = await connection.execute(sql, [name, roll, phone, email, college]);
 
