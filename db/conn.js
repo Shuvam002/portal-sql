@@ -2,12 +2,11 @@ const mysql = require('mysql2/promise');
 
 async function getConnection() {
   
-  const connection = await mysql.createConnection({
-    namedPlaceholders: true,
-    host: 'localhost',
-    user: 'root',
-    password: 'soumya@0210',
-    database: 'test'
+  const connection = mysql.createConnection({
+    host: 'paridhi2023mysqldb1.ckscrgb0xpar.ap-south-1.rds.amazonaws.com',
+    user: 'admin',
+    password: 'Rabai123',
+    database: 'portalSchema',
   });
   const createTablemrd = `CREATE TABLE IF NOT EXISTS mrd (
     id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
