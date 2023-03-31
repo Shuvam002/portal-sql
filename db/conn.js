@@ -17,8 +17,8 @@ async function getConnection() {
     Domain VARCHAR(255) NOT NULL, event VARCHAR(255) NOT NULL, gid1 INT(11) NOT NULL, gid2 INT(11) DEFAULT NULL, gid3 INT(11) DEFAULT NULL, gid4 INT(11) DEFAULT NULL, gid5 INT(11) DEFAULT NULL, phone VARCHAR(255) NOT NULL, played BOOLEAN NOT NULL DEFAULT false,
     UNIQUE KEY unique_gids_per_event (event, gid1, gid2, gid3, gid4, gid5)
   )`;
-  await connection.execute(createTablemrd);
-  await connection.execute(createTablerd);
+  /*await connection.execute(createTablemrd);
+  await connection.execute(createTablerd);*/
   return connection;
 }
 
