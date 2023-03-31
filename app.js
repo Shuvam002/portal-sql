@@ -37,7 +37,7 @@ app.get('/crd.html', (req, res) => {
             <head>
               <meta charset="UTF-8">
               <meta name="viewport" content="width=device-width, initial-scale=1.0">
-              <title>techxtra registration</title>
+              <title>Paridhi 2023</title>
               <style>
                 table, th, td {
                   border: 1px solid;
