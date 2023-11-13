@@ -3,7 +3,7 @@ const mysql = require('mysql2/promise');
 async function getConnection() {
   
   const connection = mysql.createConnection({
-    host: 'mysql://root:cGEgCh53D5c6D4ccgAEg4hb21H3--12H@monorail.proxy.rlwy.net:45143/railway',
+    host: 'monorail.proxy.rlwy.net',
     user: 'root',
     password: 'cGEgCh53D5c6D4ccgAEg4hb21H3--12H',
     database: 'railway',
