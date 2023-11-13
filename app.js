@@ -17,9 +17,7 @@ const rd_routes = require('./routes/rd');
 
 
 
-app.use('/', (req,res)=>{
-    res.send("Welcome");
-});
+
 app.use('/mrd.html', mrd_routes);
 app.use('/rd.html', rd_routes);
 app.get('/crd.html', (req, res) => {
