@@ -118,4 +118,4 @@ app.post('/mark', (req, res) => {
 });
 // app.use('/fetch',fetch_routes);
 // app.use('/crd',crd_routes);
-app.listen(3000);
+app.listen(process.env.PORT||3000);
