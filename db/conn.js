@@ -3,10 +3,10 @@ const mysql = require('mysql2/promise');
 async function getConnection() {
   
   const connection = mysql.createConnection({
-    host: 'monorail.proxy.rlwy.net',
-    user: 'root',
-    password: 'cGEgCh53D5c6D4ccgAEg4hb21H3--12H',
-    database: 'railway',
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_DATABASE,
   });
   const createTablemrd = `CREATE TABLE IF NOT EXISTS mrd (
     id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
