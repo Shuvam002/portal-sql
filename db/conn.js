@@ -3,10 +3,10 @@ const mysql = require('mysql2/promise');
 async function getConnection() {
   
   const connection = mysql.createConnection({
-    host: 'paridhi2023mysqldb1.ckscrgb0xpar.ap-south-1.rds.amazonaws.com',
-    user: 'admin',
-    password: 'Rabai123',
-    database: 'portalSchema',
+    host: 'mysql://root:cGEgCh53D5c6D4ccgAEg4hb21H3--12H@monorail.proxy.rlwy.net:45143/railway',
+    user: 'root',
+    password: 'cGEgCh53D5c6D4ccgAEg4hb21H3--12H',
+    database: 'railway',
   });
   const createTablemrd = `CREATE TABLE IF NOT EXISTS mrd (
     id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
